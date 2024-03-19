@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ThemerrDBHelper.Classes
 {
-    internal class YouTubeVideo
+    public class YouTubeVideo
     {
     }
 }
