@@ -20,7 +20,7 @@ namespace ThemerrDBHelper.Classes
         [JsonIgnore]
         YouTubeVideo? _currentVideoSelection = null;
         [JsonProperty]
-        YouTubeVideo? _savedVideo;
+        YouTubeVideo? _savedVideo = null;
         #endregion
 
         public string Id { get; private set; }
