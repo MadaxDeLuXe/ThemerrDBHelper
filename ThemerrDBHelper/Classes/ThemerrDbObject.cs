@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ThemerrDBHelper.Classes
 {
@@ -76,6 +71,11 @@ namespace ThemerrDBHelper.Classes
             this.TmdbURL = TmdbURL;
             this.TmdbID = TmdbID;
             this.ContriURL = ContriURL;
+        }
+
+        public ThemerrDbObject Create()
+        {
+
         }
     }
 }

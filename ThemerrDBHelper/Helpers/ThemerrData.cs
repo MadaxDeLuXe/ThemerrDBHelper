@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ThemerrDBHelper.Classes;
+﻿using ThemerrDBHelper.Classes;
 
 namespace ThemerrDBHelper.Helpers
 {
@@ -36,20 +31,54 @@ namespace ThemerrDBHelper.Helpers
 
         public static ThemerrDbObject.MediaType GetMediaType(string s)
         {
-            switch (s.Substring(s.IndexOf('[') + 1, s.IndexOf(']') - s.IndexOf('[') - 1))
+            return s.Substring(s.IndexOf('[') + 1, s.IndexOf(']') - s.IndexOf('[') - 1) switch
             {
-                case "MOVIE":
-                    return ThemerrDbObject.MediaType.Movie;
+                "MOVIE" => ThemerrDbObject.MediaType.Movie,
+                "TV SHOW" => ThemerrDbObject.MediaType.TVShow,
+                "GAME" => ThemerrDbObject.MediaType.Game,
+                _ => ThemerrDbObject.MediaType.Other,
+            };
+        }
 
-                case "TV SHOW":
-                    return ThemerrDbObject.MediaType.TVShow;
+        public static List<ThemerrData>? LoadFromDisk(string? Path)
+        {
+            Path ??= Settings.DataFolder + Settings.Filename;
 
-                case "GAME":
-                    return ThemerrDbObject.MediaType.Game;
-
-                default:
-                    return ThemerrDbObject.MediaType.Other;
+            if (File.Exists(Path))
+            {
+                return Json.LoadFromDisk<List<ThemerrData>>(Path);
             }
+            else return default;
+        }
+
+        public static List<ThemerrDbObject> Create(List<string> cleanLogLines)
+        {
+            List<ThemerrDbObject> dataToAdd = new();
+
+            foreach (string theme in cleanLogLines)
+            {
+                ThemerrDbObject ThemerrObj = Create(theme);
+
+                if (!dataToAdd.Any(x => x.MediaName == ThemerrObj.MediaName))
+                {
+                    dataToAdd.Add(ThemerrObj);
+                }
+            }
+            return dataToAdd;
+        }
+
+        public static ThemerrDbObject Create(string cleanLogLine)
+        {
+            string cleanString = Clean(cleanLogLine);
+
+            return new(
+                Guid.NewGuid().ToString(),
+                GetMediaType(cleanString),
+                GetName(cleanString),
+                GetTmdbURL(cleanString),
+                GetTmdbID(cleanString),
+                GetContriURL(cleanString)
+                );
         }
     }
 }
