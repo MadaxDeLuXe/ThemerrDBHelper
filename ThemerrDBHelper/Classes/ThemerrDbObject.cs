@@ -72,10 +72,5 @@ namespace ThemerrDBHelper.Classes
             this.TmdbID = TmdbID;
             this.ContriURL = ContriURL;
         }
-
-        public ThemerrDbObject Create()
-        {
-
-        }
     }
 }
