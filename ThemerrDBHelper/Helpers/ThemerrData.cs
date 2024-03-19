@@ -46,7 +46,7 @@ namespace ThemerrDBHelper.Helpers
 
             if (File.Exists(Path))
             {
-                return Json.LoadFromDisk<List<ThemerrData>>(Path);
+                return IO.LoadFromDisk<List<ThemerrData>>(Path);
             }
             else return default;
         }

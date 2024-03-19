@@ -7,6 +7,7 @@ namespace ThemerrDBHelper.Forms
         public Main()
         {
             InitializeComponent();
+
         }
 
         private void BeendenToolStripMenuItem_Click(object sender, EventArgs e)
