@@ -1,5 +1,4 @@
-﻿
-namespace ThemerrDBHelper.CustomControls
+﻿namespace ThemerrDBHelper.CustomControls
 {
     public class CustomProgressBar : ProgressBar
     {
@@ -18,15 +17,15 @@ namespace ThemerrDBHelper.CustomControls
             Both = 2
         }
 
-        System.Windows.Forms.Timer t = new();
-        
-        public int TimerInterval { get { return t.Interval; } set { t.Interval = value; } }
+        private System.Windows.Forms.Timer t = new();
+
+        public int TimerInterval
+        { get { return t.Interval; } set { t.Interval = value; } }
 
         public ProgressBarDisplayText DisplayStyle { get; set; }
         public Font TextFont = new Font(FontFamily.GenericSerif, 10);
         public Brush TextBrush = Brushes.Black;
         public string BarText { get; set; } = " ";
-         
 
         public CustomProgressBar()
         {
@@ -75,9 +74,11 @@ namespace ThemerrDBHelper.CustomControls
                 case ProgressBarDisplayText.Percent:
                     toDraw = percent.ToString() + '%';
                     break;
+
                 case ProgressBarDisplayText.CustomText:
                     toDraw = BarText;
                     break;
+
                 case ProgressBarDisplayText.Both:
                     toDraw = $"{BarText} {percent} %";
                     break;
@@ -138,14 +139,14 @@ namespace ThemerrDBHelper.CustomControls
         {
             if (InvokeRequired)
             {
-                Invoke(()=> new object[] { Action, maxValue, Text });
+                Invoke(() => new object[] { Action, maxValue, Text });
                 return;
             }
 
             Maximum = maxValue;
             BarText = Text;
 
-            if (Action == Act.Start) 
+            if (Action == Act.Start)
             {
                 Visible = true;
                 Value = 0;

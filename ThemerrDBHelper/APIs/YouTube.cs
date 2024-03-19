@@ -6,12 +6,12 @@ namespace ThemerrDBHelper.APIs
 {
     internal class YouTube
     {
-        string _APIKey = string.Empty;
+        private string _APIKey = string.Empty;
 
         internal static readonly string[] qryStrings = ["theme", "soundtrack", "score", "ost", "titlesong", "titletrack", "titletheme", "titlescore"];
 
         internal string APIKey
-        {             
+        {
             get => _APIKey;
             private set
             {

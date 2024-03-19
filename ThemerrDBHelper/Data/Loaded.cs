@@ -3,10 +3,11 @@
     public static class Loaded
     {
         public static event EventHandler? ThemerrObjectsAdded;
+
         public static event EventHandler? SelectedThemerrObjectChanged;
 
-        static List<Classes.ThemerrDbObject> _ThemerrObjects = [];
-        static Classes.ThemerrDbObject? _selectedObject = null;
+        private static List<Classes.ThemerrDbObject> _ThemerrObjects = [];
+        private static Classes.ThemerrDbObject? _selectedObject = null;
 
         public static List<Classes.ThemerrDbObject> MissingThemerrObjects
         {
@@ -27,7 +28,7 @@
 
         public static Classes.ThemerrDbObject? SelectedObject
         {
-            get => _selectedObject;            
+            get => _selectedObject;
             set
             {
                 if (value != null)

@@ -7,16 +7,21 @@ namespace ThemerrDBHelper.Classes
     {
         public static event EventHandler? SelectedVideoChanged;
 
-        public enum MediaType { Movie, TVShow, Game, Other }
+        public enum MediaType
+        { Movie, TVShow, Game, Other }
 
         #region private
+
         [JsonProperty]
-        List<YouTubeVideo>? _PossibleVideos = new();
+        private List<YouTubeVideo>? _PossibleVideos = new();
+
         [JsonIgnore]
-        YouTubeVideo? _currentVideoSelection = null;
+        private YouTubeVideo? _currentVideoSelection = null;
+
         [JsonProperty]
-        YouTubeVideo? _savedVideo = null;
-        #endregion
+        private YouTubeVideo? _savedVideo = null;
+
+        #endregion private
 
         public string Id { get; private set; }
 
@@ -36,6 +41,7 @@ namespace ThemerrDBHelper.Classes
                 _PossibleVideos = value;
             }
         }
+
         [JsonIgnore]
         public YouTubeVideo? currentVideoSelection
         {
@@ -49,6 +55,7 @@ namespace ThemerrDBHelper.Classes
                 }
             }
         }
+
         [JsonIgnore]
         public YouTubeVideo? YouTubeVideo
         {
@@ -61,7 +68,6 @@ namespace ThemerrDBHelper.Classes
                 }
             }
         }
-
 
         public ThemerrDbObject(string Id, MediaType Type, string MediaName, string TmdbURL, string TmdbID, string ContriURL)
         {

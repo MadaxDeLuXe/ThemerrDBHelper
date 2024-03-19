@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ThemerrDBHelper.Helpers
 {
@@ -13,6 +8,7 @@ namespace ThemerrDBHelper.Helpers
         {
             return settings is not null ? JsonConvert.SerializeObject(obj, settings) : JsonConvert.SerializeObject(obj);
         }
+
         public static string Serialize<T>(T obj)
         {
             return JsonConvert.SerializeObject(obj);
@@ -22,13 +18,14 @@ namespace ThemerrDBHelper.Helpers
         {
             return settings is not null ? JsonConvert.DeserializeObject<T>(json, settings) : JsonConvert.DeserializeObject<T>(json);
         }
+
         public static T? DeSerialize<T>(string json)
         {
             return JsonConvert.DeserializeObject<T>(json);
         }
 
         public static bool WriteToDisk<T>(T obj, string path)
-        {            
+        {
             JsonSerializerSettings settings = new()
             {
                 Formatting = Formatting.Indented
